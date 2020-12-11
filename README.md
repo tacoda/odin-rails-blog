@@ -1,24 +1,29 @@
-# README
+# Odin Rails Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Implementation Notes
 
-Things you may want to cover:
+```sh
+rails new odin-rails-blog
+```
 
-* Ruby version
+Add Dockerfile, docker-compose.yml, init.sql
 
-* System dependencies
+Update ruby version in Gemfile
 
-* Configuration
+Add pg gem in Gemfile
 
-* Database creation
+```sh
+docker-compose build
 
-* Database initialization
+docker-compose up
 
-* How to run the test suite
+docker-compose up -d
 
-* Services (job queues, cache servers, search engines, etc.)
+docker-compose run web rails db:create
 
-* Deployment instructions
+docker-compose run web rails db:migrate
 
-* ...
+docker-compose down
+```
+
+Visit http://localhost:3000
