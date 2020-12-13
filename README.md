@@ -4,6 +4,7 @@
 
 Requires: brew, ruby-install, chruby, docker, rails to build
 Requires: docker to run
+Requires: heroku to deploy
 
 ```sh
 ruby-install ruby 2.6.6
