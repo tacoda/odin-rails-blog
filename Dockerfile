@@ -9,18 +9,18 @@ RUN apt-get update && apt-get install -y \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update && apt-get install -y nodejs yarn
 
-RUN mkdir /app
+COPY . /app
 WORKDIR /app
 
 EXPOSE 3000
 
-COPY Gemfile .
-COPY Gemfile.lock .
+# COPY Gemfile .
+# COPY Gemfile.lock .
 RUN gem update bundler
 RUN bundle install --jobs 5
 
-COPY package.json .
-COPY yarn.lock .
+# COPY package.json .
+# COPY yarn.lock .
 RUN yarn install --check-files
 
 # FROM ruby:2.7.1
