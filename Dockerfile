@@ -1,6 +1,7 @@
 FROM ruby:2.7.1
 
 RUN gem update --system
+RUN bundle update --bundler
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
