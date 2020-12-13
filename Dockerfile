@@ -1,29 +1,21 @@
-# Use the Ruby 2.7.1 image from Docker Hub
-# as the base image (https://hub.docker.com/_/ruby)
 FROM ruby:2.7.1
 
-# Use a directory called /app in which to store
-# this application's files. (The directory name
-# is arbitrary and could have been anything.)
-WORKDIR /app
+RUN gem update --system
 
-# Copy all the application's files into the /app
-# directory.
-COPY . /app
-
-RUN bundle update --bundler
-
-# Run bundle install to install the Ruby dependencies.
-RUN bundle install
-
-# Install Yarn.
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y yarn
 
-# Run yarn install to install JavaScript dependencies.
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
+WORKDIR /app
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+RUN bundle install
+COPY . /app
 RUN yarn install --check-files
 
-# Set "rails server -b 0.0.0.0" as the command to
-# run when this container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
 CMD ["rails", "server", "-b", "0.0.0.0"]
