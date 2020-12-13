@@ -2,7 +2,12 @@
 
 ## Implementation Notes
 
+Requires: brew, ruby-install, chruby, docker, rails to build
+Requires: docker to run
+
 ```sh
+ruby-install ruby 2.6.6
+chruby 2.6.6
 rails new odin-rails-blog
 ```
 
