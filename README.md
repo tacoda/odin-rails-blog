@@ -27,3 +27,10 @@ docker-compose down
 ```
 
 Visit http://localhost:3000
+
+run is fine for local development
+Use exec for working on remote servers
+
+```sh
+docker-compose run web rails generate model Article
+```
