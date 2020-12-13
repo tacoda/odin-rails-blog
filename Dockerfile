@@ -21,7 +21,7 @@ RUN bundle install --jobs 5
 
 COPY package.json .
 COPY yarn.lock .
-RUN yarn install
+RUN yarn install --check-files
 
 # FROM ruby:2.7.1
 
