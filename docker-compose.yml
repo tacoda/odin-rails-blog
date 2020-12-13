@@ -20,8 +20,8 @@ services:
       RAILS_ENV: development
       DATABASE_NAME: dev
       DATABASE_USER: dev
-      DATABASE_PASSWORD: 
-      DATABASE_HOST: database
+      DATABASE_PASSWORD:
+      DATABASE_HOST: db
     volumes:
       - .:/app
 volumes:
