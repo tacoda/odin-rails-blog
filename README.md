@@ -70,4 +70,36 @@ docker-compose exec web bin/rails routes
 docker-compose exec web bin/rails generate controller articles
 
 docker-compose exec web bin/rails assets:precompile
+
+docker-compose exec web bin/rails generate model Comment author_name:string body:text article:references
+
+docker-compose exec web bin/rails db:migrate
+
+docker-compose exec web bin/rails console
+```
+
+irb session:
+
+```ruby
+reload!
+
+a = Article.first
+a.comments
+Comment.new
+a.comments.new
+a.comments
+
+c = a.comments.new
+c.author_name = "Daffy Duck"
+c.body = "I think this article is thhh-thhh-thupid!"
+c.save
+d = a.comments.create(author_name: "Chewbacca", body: "RAWR!")
+
+a.comments
+a.reload
+a.comments
+```
+
+```sh
+docker-compose exec web bin/rails generate controller comments
 ```
