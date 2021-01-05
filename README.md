@@ -36,6 +36,10 @@ docker-compose down
 
 Visit http://localhost:3000
 
+```sh
+docker-compose run --rm web /bin/bash
+```
+
 run is fine for local development
 
 Use exec for working on remote servers
@@ -102,4 +106,12 @@ a.comments
 
 ```sh
 docker-compose exec web bin/rails generate controller comments
+
+docker-compose exec web bin/rails generate model Tag name:string
+
+docker-compose exec web bin/rails generate model Tagging tag:references article:references
+
+docker-compose exec web bin/rails db:migrate
+
+docker-compose exec web bin/rails generate controller tags
 ```
