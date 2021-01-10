@@ -115,3 +115,14 @@ docker-compose exec web bin/rails db:migrate
 
 docker-compose exec web bin/rails generate controller tags
 ```
+
+---
+
+```sh
+docker-compose build
+docker-compose up
+
+docker-compose run --rm web /bin/bash
+bin/rails generate migration add_paperclip_fields_to_article
+bin/rails db:migrate
+```

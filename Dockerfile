@@ -3,6 +3,7 @@ FROM ruby:2.6.6-slim-stretch
 RUN apt-get update && apt-get install -y \
   curl \
   build-essential \
+  imagemagick \
   libpq-dev &&\
   curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
